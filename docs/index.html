@@ -1,13 +1,93 @@
 
-<!DOCTYPE html><html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-        <meta http-equiv="pragma" content="no-cache"><meta http-equiv="cache-control" content="no-cache">
-        <meta http-equiv="expires" content="0"><!--[if IE]><link rel="icon" href="/favicon.ico"><![endif]-->
-        <title>Preview</title>
-        </head><body><noscript><strong>A platform that automates creative production, ad buying, and everything in between.</strong></noscript><div id="app"></div>
-            <script src="https://assets.salesmartly.com/js/project_49772_52092_1712063938.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arctic Fishing Service</title>
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            position: relative;
+        }
+        .container h1 {
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            margin-top: 60px;
+        }
+        .tips {
+            position: absolute;
+            left: 10%;
+            bottom: 50px;
+            width: 80%;
+            color: #999;
+            font-size: 12px;
+         }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+
+    </div>
+    <script src="https://assets.salesmartly.com/js/project_49772_52092_1712063938.js"></script>
+    <script>
+        var isMobile = false;
+        var container = document.getElementById('container');
+        var ua = window.navigator.userAgent.toLowerCase();
+        function checkMobile() {
+            isMobile = window.outerWidth < 980 && /mobile|android|iphone|ipad|phone/i.test(ua);
+            if (isMobile) {
+                container.style.backgroundImage = 'url("https://assets.salesmartly.com/setting/preview/it.jpeg")';
+            } else {
+                container.style.backgroundImage = 'url("https://assets.salesmartly.com/setting/preview/it.jpeg")';
+            }
+        }
+        container.style.backgroundColor = '#111630';
+        function getQueryString(name, url) {
+          var reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, "i");
+          var newUrl = "";
+          if (url) {
+            const index = url.indexOf("?");
+            newUrl = url.substr(index);
+          } else {
+            newUrl = window.location.search;
+          }
+          var r = newUrl.slice(1).match(reg);
+          if (r != null) {
+            return decodeURIComponent(r[2]);
+          }
+          return null;
+      }
+
+      function useUserMode(){
+         var userId = getQueryString('user_id');
+	 var userName = getQueryString('user_name');
+
+         if (userId) {
+           var data = { user_id: userId};
+           if (userName){ data.user_name = userName };
+           ssq.push('setLoginInfo', data);
+         }
+      }
+
+        window.addEventListener('resize', checkMobile);
+
+        window.onload = function() {
+            checkMobile();
+            useUserMode();
+        }
+      window.__ssc.setting = {initMobileScreen: 'full'};
+    </script>
 </body>
 </html>
